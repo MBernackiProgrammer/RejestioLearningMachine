@@ -1,49 +1,69 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using System.Threading;
-using System.Net;
 using System.IO;
 using HtmlAgilityPack;
 using System.Drawing.Imaging;
+
+using AutomationTool.Settings;
 
 namespace AutomationTool.Helpers
 {
     public class StartCut
     {
+        // Odpowiada za napis koło progressbar'u 
         Label Percent;
+
+        // Odpowiada za wyświetlenia ile czasu pozostało do zakończenia operacji 
         Label TimeLeft;
+
+        // Odpowiada za wyświetlanie ile pobrano zdjęć 
         Label DownloadedPhotos;
+
+        //Odpowiada za wyświetlanie czasu, ile upłynęło od rozpoczęcia operacji 
         Label Started;
+
+        // Odpowiada za wyświetlania progresbaru 
         ProgressBar ProcessBar;
+
+        // Odpowiada za info form (za ten co zostaje wyświetlony po uruchomieniu operacji)
         Form InfoForm;
 
+        // Ścieżka która została wybrana (do zmiany zdjęć)
+        string SavePath;
+
+        //Tutaj są operacje, które mają zostać wykonane
+        WhatDo WhatToDo;
+
+        // Obiekt klasy, która zajmuje się zapisem najważniejszych informacji 
+        FormDataConstructor DataContructor;
+
+        // Data rozpoczęcia operacji 
         DateTime StartTime;
 
-        Action FuncToDo;
-        public StartCut(Label LPercent, Label LTimeLeft, Label LDownloadedPhotos, Label LStarted, ProgressBar LProgressBar, Form LInfoForm, Action LFuncToDo)
+        // p
+        public StartCut(FormDataConstructor LDataContructor)
         {
-            Percent = LPercent;
-            TimeLeft = LTimeLeft;
-            DownloadedPhotos = LDownloadedPhotos;
-            Started = LStarted;
-            ProcessBar = LProgressBar;
+            Percent = LDataContructor.InfoForm.L_Percent;
+            TimeLeft = LDataContructor.InfoForm.L_TimeLeft;
+            DownloadedPhotos = LDataContructor.InfoForm.L_Downloaded;
+            Started = LDataContructor.InfoForm.L_Time;
+            ProcessBar = LDataContructor.InfoForm.progressBar1;
             StartTime = DateTime.Now;
-            InfoForm = LInfoForm;
-            FuncToDo = LFuncToDo;
+            InfoForm = LDataContructor.InfoForm;
+            DataContructor = LDataContructor;
+            SavePath = LDataContructor.FolderPath; 
+
+            DataContructor.InfoForm.Invoke((MethodInvoker)(() => DataContructor.InfoForm.Text = "Docinanie zdjęć"));
             CutPhotos();
+            
+            
         }
 
         private void CutPhotos()
         {
-            string[] cos = Directory.GetFiles("C:\\Users\\Mateusz Bernacki\\Desktop\\DownloadedFotos\\");
+            string[] cos = Directory.GetFiles(SavePath + "\\");
 
             int ID = 0;
             foreach (string Paths in cos)
@@ -83,15 +103,13 @@ namespace AutomationTool.Helpers
                     File.Delete(Paths);
                 }
                 //pictureBox1.Image = resizeImage(150, 50, Paths);
-
-
             }
+
+            DataContructor.WhatToDo.CutPhotos = false;
+
+            Runner.WhatNow(DataContructor);
+
             InfoForm.Invoke((MethodInvoker)(() => InfoForm.Close()));
-            if (FuncToDo != null)
-            {
-                FuncToDo();
-            }
-
         }
 
         public Image resizeImage(int newWidth, int newHeight, string stPhotoPath)

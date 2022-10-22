@@ -12,14 +12,18 @@ using System.Threading;
 
 using AutomationTool.Helpers;
 using AutomationTool.Settings;
+using AutomationTool.ErrorInfo;
 
 namespace AutomationTool
 {
     public partial class AllSettings : Form
     {
-        public AllSettings()
+        Form1 SpawnedBy;
+        public AllSettings(Form1 LSpawnedBy)
         {
             InitializeComponent();
+
+            SpawnedBy = LSpawnedBy;
         }
 
         private void btn_Browace_Click(object sender, EventArgs e)
@@ -43,18 +47,15 @@ namespace AutomationTool
                     WhatToDo.ChangeNames = cb_Sort.Checked;
 
                     FormDataConstructor DataConstructor = new FormDataConstructor();
-                    DataConstructor.Percent = nowy.L_Percent;
-                    DataConstructor.TimeLeft = nowy.L_TimeLeft;
-                    DataConstructor.Downloaded = nowy.L_Downloaded;
-                    DataConstructor.Time = nowy.L_Time;
-                    DataConstructor.Progres = nowy.progressBar1;
                     DataConstructor.InfoForm = nowy;
                     DataConstructor.WhatToDo = WhatToDo;
                     DataConstructor.FolderPath = tb_Path.Text;
+                    DataConstructor.StartForm = SpawnedBy;
+                    DataConstructor.PreForm = tb_PreForm.Text;
 
 
                     //Tutaj rozpoczyna się proces 
-                    
+
                     Thread thrProcess = new Thread(
                         () =>
                         {
@@ -67,11 +68,13 @@ namespace AutomationTool
                 else
                 {
                     //Powiadomienie o błędzie // ścieżka folderu jest niepoprawna 
+                    ErrorInfoSpawner.PrintError("Błąd ścieżki", "Nie znaleziono ścieżki, popraw ją, a następnie znów rozpocznij operację");
                 }
             }
             else
             {
                 //Powiadomienie o błędzie // conajmniej jedna opcja musi być zaznaczona
+                ErrorInfoSpawner.PrintError("Brak zaznaczonych zadań", "Conajmniej jedna operacja musi zostać zaznaczona, zaznacz conajmniej jedno zadanie do wykonania");
             }
         }
     }

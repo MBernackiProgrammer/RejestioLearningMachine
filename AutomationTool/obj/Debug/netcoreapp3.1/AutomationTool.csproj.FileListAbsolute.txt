@@ -19,3 +19,4 @@ C:\Users\Mateusz Bernacki\source\repos\AutomationTool\AutomationTool\bin\Debug\n
 C:\Users\Mateusz Bernacki\source\repos\AutomationTool\AutomationTool\obj\Debug\netcoreapp3.1\AutomationTool.csproj.CopyComplete
 C:\Users\Mateusz Bernacki\source\repos\AutomationTool\AutomationTool\obj\Debug\netcoreapp3.1\AutomationTool.AllSettings.resources
 C:\Users\Mateusz Bernacki\source\repos\AutomationTool\AutomationTool\obj\Debug\netcoreapp3.1\AutomationTool.OnlyInstallSettings.resources
+C:\Users\Mateusz Bernacki\source\repos\AutomationTool\AutomationTool\obj\Debug\netcoreapp3.1\AutomationTool.ErrorInfo.AutoToolErrorInfo.resources

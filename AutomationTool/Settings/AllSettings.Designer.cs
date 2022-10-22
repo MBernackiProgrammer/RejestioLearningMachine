@@ -37,6 +37,7 @@ namespace AutomationTool
             this.cb_CheckThatDubled = new System.Windows.Forms.CheckBox();
             this.cb_ScalePhotos = new System.Windows.Forms.CheckBox();
             this.cb_Sort = new System.Windows.Forms.CheckBox();
+            this.tb_PreForm = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btn_Ready
@@ -114,11 +115,19 @@ namespace AutomationTool
             this.cb_Sort.Text = "Segreguj";
             this.cb_Sort.UseVisualStyleBackColor = true;
             // 
+            // tb_PreForm
+            // 
+            this.tb_PreForm.Location = new System.Drawing.Point(12, 170);
+            this.tb_PreForm.Name = "tb_PreForm";
+            this.tb_PreForm.Size = new System.Drawing.Size(125, 27);
+            this.tb_PreForm.TabIndex = 7;
+            // 
             // AllSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.tb_PreForm);
             this.Controls.Add(this.cb_Sort);
             this.Controls.Add(this.cb_ScalePhotos);
             this.Controls.Add(this.cb_CheckThatDubled);
@@ -143,5 +152,6 @@ namespace AutomationTool
         private System.Windows.Forms.CheckBox cb_CheckThatDubled;
         private System.Windows.Forms.CheckBox cb_ScalePhotos;
         private System.Windows.Forms.CheckBox cb_Sort;
+        private System.Windows.Forms.TextBox tb_PreForm;
     }
 }

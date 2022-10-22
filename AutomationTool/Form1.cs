@@ -58,15 +58,7 @@ namespace AutomationTool
 
         private void CutFotos()
         {
-            TaskForm nowy = new TaskForm();
-            Thread thrProcess = new Thread(
-                () =>
-                {
-                    StartCut pr = new StartCut(nowy.L_Percent, nowy.L_TimeLeft, nowy.L_Downloaded, nowy.L_Time, nowy.progressBar1, nowy, ()=> Segregate());
-                });
-
-            thrProcess.Start();
-            nowy.Show();
+            
             
         }
 
@@ -77,7 +69,7 @@ namespace AutomationTool
         private void btn_StartProcessing_Click(object sender, EventArgs e)
         {
             //DownloadImages();
-            ChangeDisplayForm(new AutomationTool.AllSettings(), this.panel2);
+            ChangeDisplayForm(new AutomationTool.AllSettings(this), this.panel2);
 
 
 
@@ -109,21 +101,65 @@ namespace AutomationTool
             {
                 case WhichFun.DoubleSearcer :
                     {
+                        TaskForm nowy = new TaskForm();
+                        RunInfo.InfoForm = nowy;
+
+                        Thread thrProcess = new Thread(
+                            () =>
+                            {
+                                DoubleScaner pr = new DoubleScaner(RunInfo);
+                            });
+
+                        thrProcess.Start();
+                        nowy.Show();
                         break;
                     }
 
                 case WhichFun.Download:
                     {
+                        TaskForm nowy = new TaskForm();
+                        RunInfo.InfoForm = nowy;
+
+                        Thread thrProcess = new Thread(
+                            () =>
+                            {
+                                StartPhotoDownload pr = new StartPhotoDownload(RunInfo);
+                            });
+
+                        thrProcess.Start();
+                        nowy.Show();
                         break;
                     }
 
                 case WhichFun.Rename:
                     {
+                        TaskForm nowy = new TaskForm();
+                        RunInfo.InfoForm = nowy;
+
+                        Thread thrProcess = new Thread(
+                            () =>
+                            {
+                                Renamer pr = new Renamer(RunInfo);
+                            });
+
+                        thrProcess.Start();
+                        nowy.Show();
                         break;
                     }
 
                 case WhichFun.Scaler:
                     {
+                        TaskForm nowy = new TaskForm();
+                        RunInfo.InfoForm = nowy;
+
+                        Thread thrProcess = new Thread(
+                            () =>
+                            {
+                                StartCut pr = new StartCut(RunInfo);
+                            });
+
+                        thrProcess.Start();
+                        nowy.Show();
                         break;
                     }
 
