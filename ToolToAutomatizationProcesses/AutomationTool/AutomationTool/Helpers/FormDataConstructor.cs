@@ -1,4 +1,5 @@
-﻿using AutomationTool.Settings;
+﻿// Copyright Mateusz Bernacki. All Rights Reserved.
+using AutomationTool.Settings;
 
 namespace AutomationTool.Helpers
 {

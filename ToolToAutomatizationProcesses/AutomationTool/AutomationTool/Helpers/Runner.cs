@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿// Copyright Mateusz Bernacki. All Rights Reserved.
+using System.Windows.Forms;
 using System.Collections.Generic;
 using AutomationTool.ErrorInfo;
 using System.Drawing;

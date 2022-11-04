@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Copyright Mateusz Bernacki. All Rights Reserved.
+using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -12,34 +13,64 @@ namespace AutomationTool.Helpers
 {
     public class StartCut
     {
-        // Odpowiada za napis koło progressbar'u 
+        //Obiekt klasy Label, odpowiadający za wyświetlanie (jako liczba), ile jest procent ukończenia operacji
+        /// <summary>
+        /// Odpowiada za napis koło progressbar'u na InfoFormie
+        /// </summary>
         Label Percent;
 
-        // Odpowiada za wyświetlenia ile czasu pozostało do zakończenia operacji 
+        //Odpowiada za wyświetlenia ile czasu pozostało do zakończenia operacji 
+        /// <summary>
+        /// Obiekt klasy Label, odpowiadający za wyświetlania ile czasu pozostało do zakończenia operacji
+        /// </summary>
         Label TimeLeft;
 
         // Odpowiada za wyświetlanie ile pobrano zdjęć 
+        /// <summary>
+        /// Obiekt klasy Label, który służy do wyświerlania ilości pobranych zdjęć 
+        /// </summary>
         Label DownloadedPhotos;
 
         //Odpowiada za wyświetlanie czasu, ile upłynęło od rozpoczęcia operacji 
+        /// <summary>
+        /// Obiekt klasy Label, który wyświetla ile sekund mineło od rozpoczęcia operacji 
+        /// </summary> 
         Label Started;
 
         // Odpowiada za wyświetlania progresbaru 
+        /// <summary>
+        /// Obiekt paska progresu na InfoForm'ie (zespawnowanego na wątku głównym)
+        /// </summary>
         ProgressBar ProcessBar;
 
         // Odpowiada za info form (za ten co zostaje wyświetlony po uruchomieniu operacji)
+        /// <summary>
+        /// Jest to obiekt zespawnowanego informatora o czasie itp. odnośnie operacji
+        /// </summary>
         Form InfoForm;
 
-        // Ścieżka która została wybrana (do zmiany zdjęć)
+        // Ścieżka która została wybrana wybrana do sprawdzania plików(na samym początku operacji na wątku głównym)
+        /// <summary>
+        /// Ścieżka operacji na plikach 
+        /// </summary>
         string SavePath;
 
         //Tutaj są operacje, które mają zostać wykonane
+        /// <summary>
+        /// Klasa przechowuje listę ToDo, opisaną bool'ami 
+        /// </summary>
         WhatDo WhatToDo;
 
-        // Obiekt klasy, która zajmuje się zapisem najważniejszych informacji 
+        // Obiekt klasy, która zajmuje się przechowywaniem obiektów innych klas, które później będą edytowane za pomocą invok'ów
+        /// <summary>
+        /// Dane z wątku głównego ap label'ów, które później są edytowane 
+        /// </summary>
         FormDataConstructor DataContructor;
 
-        // Data rozpoczęcia operacji 
+        // Wykożystywana jest ta zmienna do określanie ile trwa już proces i ile będzie twać
+        /// <summary>
+        /// Data rozpoczęcia danej operacji
+        /// </summary>
         DateTime StartTime;
 
         Size ToSetSize = new Size(300, 150);

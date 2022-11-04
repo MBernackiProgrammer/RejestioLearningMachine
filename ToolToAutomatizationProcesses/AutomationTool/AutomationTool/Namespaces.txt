@@ -1,0 +1,18 @@
+﻿Najważniejsze namespacy :
+
+W nim znajduje się moduł wyświetlania błędów :
+namespace AutomationTool.ErrorInfo;
+
+W tym namecpace'ie znajdują się wszystkie operacje, lecz w róznych klasach :
+| namespace AutomationTool.Helpers;
+| 
+| Klasy operacyjne :
+| | DoubleScaner - Szuka takich samych plików 
+| | Renamer - Zmienia nazwy wszystkich plików w podanym folderze 
+| | StartCutOnly - Przeprowadza operację obcinania zdjęć do podanego rozmiaru 
+| | StartPhotoDownloader - przeprowadza operację pobierania zdjęć
+|
+| Klasy pomocnicze :
+| | Runner - Służy do uruchamiania procesów przez wątek główny 
+| | FormDataConstructor - Zawiera w sobie najważniejsze zmienne 
+

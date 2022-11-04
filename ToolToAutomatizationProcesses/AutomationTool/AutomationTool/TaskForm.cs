@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Copyright Mateusz Bernacki. All Rights Reserved.
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
